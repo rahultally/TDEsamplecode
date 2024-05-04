@@ -1,0 +1,54 @@
+[#Menu	:	Gateway of Tally]
+	Add	:	Item	:	Vchdetails	:	Display		:	VourcherDetails
+	
+[Report	:	VourcherDetails]
+	Form	: Vchdetails
+	
+[Form	:	Vchdetails]
+	Part	: Vchdtls
+	Height:100% screen
+	Width: 100% screen
+	
+[Part	:	Vchdtls]
+	Line	:	Title, Dtls
+	Repeat	:	Dtls	:	sumcoll
+[Line	:	Title]
+	Use	: Dtls
+	Local	:	Field	:	vchno	:	Info	:	"Voucher number"
+	
+[Line	:	Dtls]
+	Field	:	vchno
+	
+[Field	:	vchno]
+	Use	: name field
+	Set as	:	$vch
+	Set Always: Yes
+	Variable : VarIsReceivable
+	
+	
+[Variable:VarIsReceivable]
+	Type:String
+	Volatile : Yes
+	
+
+	
+
+	
+[Collection	:	srccoll]
+	Type	:	voucher
+	
+[Collection	:	sumcoll]
+	Source Collection	:	srccoll
+	Compute	:	vch	:$vouchernumber
+	
+
+	
+[#Collection: List of Custom Browser Reports]
+
+Add : Object : TSPL Party Contact Details
+
+[Object: TSPL Party Contact Details]
+
+
+Name : $$LocaleString:"VourcherDetails"
+Current Report : VourcherDetails
